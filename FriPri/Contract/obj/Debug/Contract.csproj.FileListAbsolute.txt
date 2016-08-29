@@ -1,0 +1,8 @@
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Contract\bin\Debug\Contract.dll
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Contract\bin\Debug\Contract.pdb
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Contract\obj\Debug\Contract.dll
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Contract\obj\Debug\Contract.pdb
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Contract\bin\Debug\Contract.dll
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Contract\bin\Debug\Contract.pdb
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Contract\obj\Debug\Contract.dll
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Contract\obj\Debug\Contract.pdb

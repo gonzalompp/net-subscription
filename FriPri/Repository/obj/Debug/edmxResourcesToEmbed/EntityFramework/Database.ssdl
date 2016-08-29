@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FriPriModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="FriPriModelStoreContainer">
+    <EntitySet Name="Configuration" EntityType="FriPriModel.Store.Configuration" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Dimensions" EntityType="FriPriModel.Store.Dimensions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DimensionsCategories" EntityType="FriPriModel.Store.DimensionsCategories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DimensionsTypes" EntityType="FriPriModel.Store.DimensionsTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EventsLogs" EntityType="FriPriModel.Store.EventsLogs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Forms" EntityType="FriPriModel.Store.Forms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="FriPriModel.Store.Products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductsForms" EntityType="FriPriModel.Store.ProductsForms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Profiles" EntityType="FriPriModel.Store.Profiles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProfilesDimensions" EntityType="FriPriModel.Store.ProfilesDimensions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Promos" EntityType="FriPriModel.Store.Promos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Publishers" EntityType="FriPriModel.Store.Publishers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subscriptions" EntityType="FriPriModel.Store.Subscriptions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="FriPriModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="FriPriModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsersDimensions" EntityType="FriPriModel.Store.UsersDimensions" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Dimensions_DimensionsCategories" Association="FriPriModel.Store.FK_Dimensions_DimensionsCategories">
+      <End Role="DimensionsCategories" EntitySet="DimensionsCategories" />
+      <End Role="Dimensions" EntitySet="Dimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dimensions_DimensionsTypes" Association="FriPriModel.Store.FK_Dimensions_DimensionsTypes">
+      <End Role="DimensionsTypes" EntitySet="DimensionsTypes" />
+      <End Role="Dimensions" EntitySet="Dimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DimensionsCategories_Products" Association="FriPriModel.Store.FK_DimensionsCategories_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="DimensionsCategories" EntitySet="DimensionsCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Publishers" Association="FriPriModel.Store.FK_Products_Publishers">
+      <End Role="Publishers" EntitySet="Publishers" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsForms_Forms" Association="FriPriModel.Store.FK_ProductsForms_Forms">
+      <End Role="Forms" EntitySet="Forms" />
+      <End Role="ProductsForms" EntitySet="ProductsForms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsForms_Products" Association="FriPriModel.Store.FK_ProductsForms_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductsForms" EntitySet="ProductsForms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profiles_Products" Association="FriPriModel.Store.FK_Profiles_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Profiles" EntitySet="Profiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfilesDimensions_Dimensions" Association="FriPriModel.Store.FK_ProfilesDimensions_Dimensions">
+      <End Role="Dimensions" EntitySet="Dimensions" />
+      <End Role="ProfilesDimensions" EntitySet="ProfilesDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfilesDimensions_Profiles" Association="FriPriModel.Store.FK_ProfilesDimensions_Profiles">
+      <End Role="Profiles" EntitySet="Profiles" />
+      <End Role="ProfilesDimensions" EntitySet="ProfilesDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subscriptions_Profiles" Association="FriPriModel.Store.FK_Subscriptions_Profiles">
+      <End Role="Profiles" EntitySet="Profiles" />
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subscriptions_Users1" Association="FriPriModel.Store.FK_Subscriptions_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Products" Association="FriPriModel.Store.FK_Users_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersDimensions_Dimensions" Association="FriPriModel.Store.FK_UsersDimensions_Dimensions">
+      <End Role="Dimensions" EntitySet="Dimensions" />
+      <End Role="UsersDimensions" EntitySet="UsersDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersDimensions_Subscriptions" Association="FriPriModel.Store.FK_UsersDimensions_Subscriptions">
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+      <End Role="UsersDimensions" EntitySet="UsersDimensions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Configuration">
+    <Key>
+      <PropertyRef Name="IdConfiguration" />
+    </Key>
+    <Property Name="IdConfiguration" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="varchar" MaxLength="256" />
+    <Property Name="TagName" Type="varchar" MaxLength="150" />
+    <Property Name="Value" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Dimensions">
+    <Key>
+      <PropertyRef Name="IdDimension" />
+    </Key>
+    <Property Name="IdDimension" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar" MaxLength="250" />
+    <Property Name="IdDimensionType" Type="int" />
+    <Property Name="IdDimensionCategory" Type="int" />
+    <Property Name="Unit" Type="varchar" MaxLength="50" />
+    <Property Name="DurationHours" Type="int" />
+    <Property Name="LongDescription" Type="text" />
+    <Property Name="Value" Type="decimal" />
+    <Property Name="SwitchValue" Type="bit" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="TagName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DimensionsCategories">
+    <Key>
+      <PropertyRef Name="IdDimensionCategory" />
+    </Key>
+    <Property Name="IdDimensionCategory" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar" MaxLength="250" />
+    <Property Name="IdProduct" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="TagName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DimensionsTypes">
+    <Key>
+      <PropertyRef Name="IdDimensionType" />
+    </Key>
+    <Property Name="IdDimensionType" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar" MaxLength="250" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="TagName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EventsLogs">
+    <Key>
+      <PropertyRef Name="IdEventLog" />
+    </Key>
+    <Property Name="Description" Type="varchar" MaxLength="256" />
+    <Property Name="Text" Type="text" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="IdEventLog" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Forms">
+    <Key>
+      <PropertyRef Name="IdForm" />
+    </Key>
+    <Property Name="IdForm" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar" MaxLength="250" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="TagName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="IdProduct" />
+    </Key>
+    <Property Name="IdProduct" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar" MaxLength="250" />
+    <Property Name="IdPublisher" Type="int" />
+    <Property Name="CallbackUrlBilling" Type="varchar" MaxLength="256" />
+    <Property Name="Token" Type="varchar" MaxLength="256" />
+    <Property Name="TagName" Type="varchar" MaxLength="50" />
+    <Property Name="DemoMode" Type="bit" />
+    <Property Name="BillingUrlOk" Type="varchar" MaxLength="256" />
+    <Property Name="BillingUrlError" Type="varchar" MaxLength="256" />
+    <Property Name="BillingUrlProduct" Type="varchar" MaxLength="256" />
+    <Property Name="CodeAnalytics" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ProductsForms">
+    <Key>
+      <PropertyRef Name="IdProductForm" />
+    </Key>
+    <Property Name="IdProductForm" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IdProduct" Type="int" />
+    <Property Name="IdForm" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Token" Type="varchar" MaxLength="256" />
+    <Property Name="Title" Type="varchar" MaxLength="256" />
+    <Property Name="Description" Type="text" />
+    <Property Name="Footer" Type="varchar" MaxLength="256" />
+    <Property Name="SubscribeButtonText" Type="varchar" MaxLength="256" />
+    <Property Name="UrlLogo" Type="varchar" MaxLength="256" />
+    <Property Name="UrlBackground" Type="varchar" MaxLength="256" />
+    <Property Name="ColorSuperiorBar" Type="varchar" MaxLength="10" />
+    <Property Name="CssClassFeatured" Type="varchar" MaxLength="30" />
+    <Property Name="CssClassActual" Type="varchar" MaxLength="50" />
+    <Property Name="TitleColor" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Profiles">
+    <Key>
+      <PropertyRef Name="IdProfile" />
+    </Key>
+    <Property Name="IdProfile" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IdProduct" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="256" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+    <Property Name="PriceUSD" Type="decimal" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="TagName" Type="varchar" MaxLength="100" />
+    <Property Name="AnonDefault" Type="bit" />
+    <Property Name="UserDefault" Type="bit" />
+    <Property Name="Paid" Type="bit" />
+    <Property Name="Featured" Type="bit" />
+    <Property Name="MotivatorText" Type="text" />
+    <Property Name="ShortDescription" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="ProfilesDimensions">
+    <Key>
+      <PropertyRef Name="IdProfileDimension" />
+    </Key>
+    <Property Name="IdProfileDimension" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IdProfile" Type="int" />
+    <Property Name="IdDimension" Type="int" />
+    <Property Name="Value" Type="decimal" />
+    <Property Name="SwitchValue" Type="bit" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Promos">
+    <Key>
+      <PropertyRef Name="IdPromo" />
+    </Key>
+    <Property Name="IdPromo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TagPromo" Type="varchar" MaxLength="20" />
+    <Property Name="Name" Type="varchar" MaxLength="256" />
+    <Property Name="FreeDays" Type="int" />
+    <Property Name="IdProfileActivePromo" Type="int" />
+    <Property Name="IdProfileInactivePromo" Type="int" />
+    <Property Name="IdProduct" Type="int" />
+  </EntityType>
+  <EntityType Name="Publishers">
+    <Key>
+      <PropertyRef Name="IdPublisher" />
+    </Key>
+    <Property Name="IdPublisher" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar" MaxLength="250" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="TagName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Subscriptions">
+    <Key>
+      <PropertyRef Name="IdSubscription" />
+    </Key>
+    <Property Name="IdSubscription" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ExternalCode" Type="varchar" MaxLength="256" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="RenewalDay" Type="int" />
+    <Property Name="LastRenewal" Type="date" />
+    <Property Name="IdUser" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="IdProfile" Type="int" />
+    <Property Name="IsCurrent" Type="bit" />
+    <Property Name="PromoFreeDays" Type="int" />
+    <Property Name="PromoStarted" Type="datetime" />
+    <Property Name="PromoEnd" Type="datetime" />
+    <Property Name="PromoActive" Type="bit" />
+    <Property Name="IdPromo" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ExternalCode" Type="nchar" MaxLength="10" />
+    <Property Name="IdProduct" Type="int" />
+    <Property Name="Email" Type="varchar" MaxLength="256" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="UsersDimensions">
+    <Key>
+      <PropertyRef Name="IdUserDimension" />
+    </Key>
+    <Property Name="IdUserDimension" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IdDimension" Type="int" />
+    <Property Name="CurrentValue" Type="decimal" />
+    <Property Name="DateLastUpdate" Type="datetime" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="IdSubscription" Type="int" />
+    <Property Name="SwitchValue" Type="bit" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Dimensions_DimensionsCategories">
+    <End Role="DimensionsCategories" Type="FriPriModel.Store.DimensionsCategories" Multiplicity="0..1" />
+    <End Role="Dimensions" Type="FriPriModel.Store.Dimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DimensionsCategories">
+        <PropertyRef Name="IdDimensionCategory" />
+      </Principal>
+      <Dependent Role="Dimensions">
+        <PropertyRef Name="IdDimensionCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dimensions_DimensionsTypes">
+    <End Role="DimensionsTypes" Type="FriPriModel.Store.DimensionsTypes" Multiplicity="0..1" />
+    <End Role="Dimensions" Type="FriPriModel.Store.Dimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DimensionsTypes">
+        <PropertyRef Name="IdDimensionType" />
+      </Principal>
+      <Dependent Role="Dimensions">
+        <PropertyRef Name="IdDimensionType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DimensionsCategories_Products">
+    <End Role="Products" Type="FriPriModel.Store.Products" Multiplicity="0..1" />
+    <End Role="DimensionsCategories" Type="FriPriModel.Store.DimensionsCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="DimensionsCategories">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Publishers">
+    <End Role="Publishers" Type="FriPriModel.Store.Publishers" Multiplicity="0..1" />
+    <End Role="Products" Type="FriPriModel.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publishers">
+        <PropertyRef Name="IdPublisher" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="IdPublisher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsForms_Forms">
+    <End Role="Forms" Type="FriPriModel.Store.Forms" Multiplicity="0..1" />
+    <End Role="ProductsForms" Type="FriPriModel.Store.ProductsForms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Forms">
+        <PropertyRef Name="IdForm" />
+      </Principal>
+      <Dependent Role="ProductsForms">
+        <PropertyRef Name="IdForm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsForms_Products">
+    <End Role="Products" Type="FriPriModel.Store.Products" Multiplicity="0..1" />
+    <End Role="ProductsForms" Type="FriPriModel.Store.ProductsForms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="ProductsForms">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Profiles_Products">
+    <End Role="Products" Type="FriPriModel.Store.Products" Multiplicity="0..1" />
+    <End Role="Profiles" Type="FriPriModel.Store.Profiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="Profiles">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfilesDimensions_Dimensions">
+    <End Role="Dimensions" Type="FriPriModel.Store.Dimensions" Multiplicity="0..1" />
+    <End Role="ProfilesDimensions" Type="FriPriModel.Store.ProfilesDimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dimensions">
+        <PropertyRef Name="IdDimension" />
+      </Principal>
+      <Dependent Role="ProfilesDimensions">
+        <PropertyRef Name="IdDimension" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfilesDimensions_Profiles">
+    <End Role="Profiles" Type="FriPriModel.Store.Profiles" Multiplicity="0..1" />
+    <End Role="ProfilesDimensions" Type="FriPriModel.Store.ProfilesDimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profiles">
+        <PropertyRef Name="IdProfile" />
+      </Principal>
+      <Dependent Role="ProfilesDimensions">
+        <PropertyRef Name="IdProfile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subscriptions_Profiles">
+    <End Role="Profiles" Type="FriPriModel.Store.Profiles" Multiplicity="0..1" />
+    <End Role="Subscriptions" Type="FriPriModel.Store.Subscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profiles">
+        <PropertyRef Name="IdProfile" />
+      </Principal>
+      <Dependent Role="Subscriptions">
+        <PropertyRef Name="IdProfile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subscriptions_Users1">
+    <End Role="Users" Type="FriPriModel.Store.Users" Multiplicity="0..1" />
+    <End Role="Subscriptions" Type="FriPriModel.Store.Subscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="Subscriptions">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Products">
+    <End Role="Products" Type="FriPriModel.Store.Products" Multiplicity="0..1" />
+    <End Role="Users" Type="FriPriModel.Store.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersDimensions_Dimensions">
+    <End Role="Dimensions" Type="FriPriModel.Store.Dimensions" Multiplicity="0..1" />
+    <End Role="UsersDimensions" Type="FriPriModel.Store.UsersDimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dimensions">
+        <PropertyRef Name="IdDimension" />
+      </Principal>
+      <Dependent Role="UsersDimensions">
+        <PropertyRef Name="IdDimension" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersDimensions_Subscriptions">
+    <End Role="Subscriptions" Type="FriPriModel.Store.Subscriptions" Multiplicity="0..1" />
+    <End Role="UsersDimensions" Type="FriPriModel.Store.UsersDimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subscriptions">
+        <PropertyRef Name="IdSubscription" />
+      </Principal>
+      <Dependent Role="UsersDimensions">
+        <PropertyRef Name="IdSubscription" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FriPriModelStoreContainer" CdmEntityContainer="FriPriEntities">
+    <EntitySetMapping Name="Configuration">
+      <EntityTypeMapping TypeName="FriPriModel.Configuration">
+        <MappingFragment StoreEntitySet="Configuration">
+          <ScalarProperty Name="IdConfiguration" ColumnName="IdConfiguration" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dimensions">
+      <EntityTypeMapping TypeName="FriPriModel.Dimensions">
+        <MappingFragment StoreEntitySet="Dimensions">
+          <ScalarProperty Name="IdDimension" ColumnName="IdDimension" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IdDimensionType" ColumnName="IdDimensionType" />
+          <ScalarProperty Name="IdDimensionCategory" ColumnName="IdDimensionCategory" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="DurationHours" ColumnName="DurationHours" />
+          <ScalarProperty Name="LongDescription" ColumnName="LongDescription" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="SwitchValue" ColumnName="SwitchValue" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DimensionsCategories">
+      <EntityTypeMapping TypeName="FriPriModel.DimensionsCategories">
+        <MappingFragment StoreEntitySet="DimensionsCategories">
+          <ScalarProperty Name="IdDimensionCategory" ColumnName="IdDimensionCategory" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DimensionsTypes">
+      <EntityTypeMapping TypeName="FriPriModel.DimensionsTypes">
+        <MappingFragment StoreEntitySet="DimensionsTypes">
+          <ScalarProperty Name="IdDimensionType" ColumnName="IdDimensionType" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventsLogs">
+      <EntityTypeMapping TypeName="FriPriModel.EventsLogs">
+        <MappingFragment StoreEntitySet="EventsLogs">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="IdEventLog" ColumnName="IdEventLog" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Forms">
+      <EntityTypeMapping TypeName="FriPriModel.Forms">
+        <MappingFragment StoreEntitySet="Forms">
+          <ScalarProperty Name="IdForm" ColumnName="IdForm" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="FriPriModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IdPublisher" ColumnName="IdPublisher" />
+          <ScalarProperty Name="CallbackUrlBilling" ColumnName="CallbackUrlBilling" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+          <ScalarProperty Name="DemoMode" ColumnName="DemoMode" />
+          <ScalarProperty Name="BillingUrlOk" ColumnName="BillingUrlOk" />
+          <ScalarProperty Name="BillingUrlError" ColumnName="BillingUrlError" />
+          <ScalarProperty Name="BillingUrlProduct" ColumnName="BillingUrlProduct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductsForms">
+      <EntityTypeMapping TypeName="FriPriModel.ProductsForms">
+        <MappingFragment StoreEntitySet="ProductsForms">
+          <ScalarProperty Name="IdProductForm" ColumnName="IdProductForm" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="IdForm" ColumnName="IdForm" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Footer" ColumnName="Footer" />
+          <ScalarProperty Name="SubscribeButtonText" ColumnName="SubscribeButtonText" />
+          <ScalarProperty Name="UrlLogo" ColumnName="UrlLogo" />
+          <ScalarProperty Name="UrlBackground" ColumnName="UrlBackground" />
+          <ScalarProperty Name="ColorSuperiorBar" ColumnName="ColorSuperiorBar" />
+          <ScalarProperty Name="CssClassFeatured" ColumnName="CssClassFeatured" />
+          <ScalarProperty Name="CssClassActual" ColumnName="CssClassActual" />
+          <ScalarProperty Name="TitleColor" ColumnName="TitleColor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profiles">
+      <EntityTypeMapping TypeName="FriPriModel.Profiles">
+        <MappingFragment StoreEntitySet="Profiles">
+          <ScalarProperty Name="IdProfile" ColumnName="IdProfile" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PriceUSD" ColumnName="PriceUSD" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+          <ScalarProperty Name="AnonDefault" ColumnName="AnonDefault" />
+          <ScalarProperty Name="UserDefault" ColumnName="UserDefault" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="Featured" ColumnName="Featured" />
+          <ScalarProperty Name="MotivatorText" ColumnName="MotivatorText" />
+          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfilesDimensions">
+      <EntityTypeMapping TypeName="FriPriModel.ProfilesDimensions">
+        <MappingFragment StoreEntitySet="ProfilesDimensions">
+          <ScalarProperty Name="IdProfileDimension" ColumnName="IdProfileDimension" />
+          <ScalarProperty Name="IdProfile" ColumnName="IdProfile" />
+          <ScalarProperty Name="IdDimension" ColumnName="IdDimension" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="SwitchValue" ColumnName="SwitchValue" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publishers">
+      <EntityTypeMapping TypeName="FriPriModel.Publishers">
+        <MappingFragment StoreEntitySet="Publishers">
+          <ScalarProperty Name="IdPublisher" ColumnName="IdPublisher" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subscriptions">
+      <EntityTypeMapping TypeName="FriPriModel.Subscriptions">
+        <MappingFragment StoreEntitySet="Subscriptions">
+          <ScalarProperty Name="IdSubscription" ColumnName="IdSubscription" />
+          <ScalarProperty Name="ExternalCode" ColumnName="ExternalCode" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="RenewalDay" ColumnName="RenewalDay" />
+          <ScalarProperty Name="LastRenewal" ColumnName="LastRenewal" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="IdProfile" ColumnName="IdProfile" />
+          <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="FriPriModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="FriPriModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="ExternalCode" ColumnName="ExternalCode" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersDimensions">
+      <EntityTypeMapping TypeName="FriPriModel.UsersDimensions">
+        <MappingFragment StoreEntitySet="UsersDimensions">
+          <ScalarProperty Name="IdUserDimension" ColumnName="IdUserDimension" />
+          <ScalarProperty Name="IdDimension" ColumnName="IdDimension" />
+          <ScalarProperty Name="CurrentValue" ColumnName="CurrentValue" />
+          <ScalarProperty Name="DateLastUpdate" ColumnName="DateLastUpdate" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="IdSubscription" ColumnName="IdSubscription" />
+          <ScalarProperty Name="SwitchValue" ColumnName="SwitchValue" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

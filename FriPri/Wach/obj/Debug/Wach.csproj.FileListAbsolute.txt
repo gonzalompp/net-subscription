@@ -1,0 +1,17 @@
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Wach\bin\Debug\Wach.dll
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Wach\bin\Debug\Wach.pdb
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Wach\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Wach\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Wach\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Wach\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Wach\obj\Debug\Wach.dll
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Wach\obj\Debug\Wach.pdb
+C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Wach\obj\Debug\Wach.csprojResolveAssemblyReference.cache
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Wach\bin\Debug\Wach.dll
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Wach\bin\Debug\Wach.pdb
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Wach\bin\Debug\Newtonsoft.Json.dll
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Wach\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Wach\bin\Debug\Newtonsoft.Json.xml
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Wach\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Wach\obj\Debug\Wach.dll
+C:\Users\samsung1\Documents\Visual Studio 2012\Projects\FriPri\Wach\obj\Debug\Wach.pdb

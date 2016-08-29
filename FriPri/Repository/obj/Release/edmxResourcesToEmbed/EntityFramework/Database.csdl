@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FriPriModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="FriPriEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Configuration" EntityType="FriPriModel.Configuration" />
+    <EntitySet Name="Dimensions" EntityType="FriPriModel.Dimensions" />
+    <EntitySet Name="DimensionsCategories" EntityType="FriPriModel.DimensionsCategories" />
+    <EntitySet Name="DimensionsTypes" EntityType="FriPriModel.DimensionsTypes" />
+    <EntitySet Name="EventsLogs" EntityType="FriPriModel.EventsLogs" />
+    <EntitySet Name="Forms" EntityType="FriPriModel.Forms" />
+    <EntitySet Name="Products" EntityType="FriPriModel.Products" />
+    <EntitySet Name="ProductsForms" EntityType="FriPriModel.ProductsForms" />
+    <EntitySet Name="Profiles" EntityType="FriPriModel.Profiles" />
+    <EntitySet Name="ProfilesDimensions" EntityType="FriPriModel.ProfilesDimensions" />
+    <EntitySet Name="Publishers" EntityType="FriPriModel.Publishers" />
+    <EntitySet Name="Subscriptions" EntityType="FriPriModel.Subscriptions" />
+    <EntitySet Name="sysdiagrams" EntityType="FriPriModel.sysdiagrams" />
+    <EntitySet Name="Users" EntityType="FriPriModel.Users" />
+    <EntitySet Name="UsersDimensions" EntityType="FriPriModel.UsersDimensions" />
+    <AssociationSet Name="FK_Dimensions_DimensionsCategories" Association="FriPriModel.FK_Dimensions_DimensionsCategories">
+      <End Role="DimensionsCategories" EntitySet="DimensionsCategories" />
+      <End Role="Dimensions" EntitySet="Dimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dimensions_DimensionsTypes" Association="FriPriModel.FK_Dimensions_DimensionsTypes">
+      <End Role="DimensionsTypes" EntitySet="DimensionsTypes" />
+      <End Role="Dimensions" EntitySet="Dimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfilesDimensions_Dimensions" Association="FriPriModel.FK_ProfilesDimensions_Dimensions">
+      <End Role="Dimensions" EntitySet="Dimensions" />
+      <End Role="ProfilesDimensions" EntitySet="ProfilesDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersDimensions_Dimensions" Association="FriPriModel.FK_UsersDimensions_Dimensions">
+      <End Role="Dimensions" EntitySet="Dimensions" />
+      <End Role="UsersDimensions" EntitySet="UsersDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DimensionsCategories_Products" Association="FriPriModel.FK_DimensionsCategories_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="DimensionsCategories" EntitySet="DimensionsCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsForms_Forms" Association="FriPriModel.FK_ProductsForms_Forms">
+      <End Role="Forms" EntitySet="Forms" />
+      <End Role="ProductsForms" EntitySet="ProductsForms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Publishers" Association="FriPriModel.FK_Products_Publishers">
+      <End Role="Publishers" EntitySet="Publishers" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsForms_Products" Association="FriPriModel.FK_ProductsForms_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductsForms" EntitySet="ProductsForms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profiles_Products" Association="FriPriModel.FK_Profiles_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Profiles" EntitySet="Profiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Products" Association="FriPriModel.FK_Users_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfilesDimensions_Profiles" Association="FriPriModel.FK_ProfilesDimensions_Profiles">
+      <End Role="Profiles" EntitySet="Profiles" />
+      <End Role="ProfilesDimensions" EntitySet="ProfilesDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subscriptions_Profiles" Association="FriPriModel.FK_Subscriptions_Profiles">
+      <End Role="Profiles" EntitySet="Profiles" />
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subscriptions_Users1" Association="FriPriModel.FK_Subscriptions_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersDimensions_Subscriptions" Association="FriPriModel.FK_UsersDimensions_Subscriptions">
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+      <End Role="UsersDimensions" EntitySet="UsersDimensions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Configuration">
+    <Key>
+      <PropertyRef Name="IdConfiguration" />
+    </Key>
+    <Property Name="IdConfiguration" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="TagName" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="Value" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Dimensions">
+    <Key>
+      <PropertyRef Name="IdDimension" />
+    </Key>
+    <Property Name="IdDimension" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="IdDimensionType" Type="Int32" />
+    <Property Name="IdDimensionCategory" Type="Int32" />
+    <Property Name="Unit" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DurationHours" Type="Int32" />
+    <Property Name="LongDescription" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Value" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SwitchValue" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="TagName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="DimensionsCategories" Relationship="FriPriModel.FK_Dimensions_DimensionsCategories" FromRole="Dimensions" ToRole="DimensionsCategories" />
+    <NavigationProperty Name="DimensionsTypes" Relationship="FriPriModel.FK_Dimensions_DimensionsTypes" FromRole="Dimensions" ToRole="DimensionsTypes" />
+    <NavigationProperty Name="ProfilesDimensions" Relationship="FriPriModel.FK_ProfilesDimensions_Dimensions" FromRole="Dimensions" ToRole="ProfilesDimensions" />
+    <NavigationProperty Name="UsersDimensions" Relationship="FriPriModel.FK_UsersDimensions_Dimensions" FromRole="Dimensions" ToRole="UsersDimensions" />
+  </EntityType>
+  <EntityType Name="DimensionsCategories">
+    <Key>
+      <PropertyRef Name="IdDimensionCategory" />
+    </Key>
+    <Property Name="IdDimensionCategory" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="IdProduct" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="TagName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Dimensions" Relationship="FriPriModel.FK_Dimensions_DimensionsCategories" FromRole="DimensionsCategories" ToRole="Dimensions" />
+    <NavigationProperty Name="Products" Relationship="FriPriModel.FK_DimensionsCategories_Products" FromRole="DimensionsCategories" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="DimensionsTypes">
+    <Key>
+      <PropertyRef Name="IdDimensionType" />
+    </Key>
+    <Property Name="IdDimensionType" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="TagName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Dimensions" Relationship="FriPriModel.FK_Dimensions_DimensionsTypes" FromRole="DimensionsTypes" ToRole="Dimensions" />
+  </EntityType>
+  <EntityType Name="EventsLogs">
+    <Key>
+      <PropertyRef Name="IdEventLog" />
+    </Key>
+    <Property Name="Description" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="IdEventLog" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Forms">
+    <Key>
+      <PropertyRef Name="IdForm" />
+    </Key>
+    <Property Name="IdForm" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="TagName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="ProductsForms" Relationship="FriPriModel.FK_ProductsForms_Forms" FromRole="Forms" ToRole="ProductsForms" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="IdProduct" />
+    </Key>
+    <Property Name="IdProduct" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="IdPublisher" Type="Int32" />
+    <Property Name="CallbackUrlBilling" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Token" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="TagName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="DemoMode" Type="Boolean" />
+    <Property Name="BillingUrlOk" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="BillingUrlError" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="BillingUrlProduct" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="DimensionsCategories" Relationship="FriPriModel.FK_DimensionsCategories_Products" FromRole="Products" ToRole="DimensionsCategories" />
+    <NavigationProperty Name="Publishers" Relationship="FriPriModel.FK_Products_Publishers" FromRole="Products" ToRole="Publishers" />
+    <NavigationProperty Name="ProductsForms" Relationship="FriPriModel.FK_ProductsForms_Products" FromRole="Products" ToRole="ProductsForms" />
+    <NavigationProperty Name="Profiles" Relationship="FriPriModel.FK_Profiles_Products" FromRole="Products" ToRole="Profiles" />
+    <NavigationProperty Name="Users" Relationship="FriPriModel.FK_Users_Products" FromRole="Products" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="ProductsForms">
+    <Key>
+      <PropertyRef Name="IdProductForm" />
+    </Key>
+    <Property Name="IdProductForm" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProduct" Type="Int32" />
+    <Property Name="IdForm" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Token" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Title" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Footer" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="SubscribeButtonText" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="UrlLogo" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="UrlBackground" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="ColorSuperiorBar" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="CssClassFeatured" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="CssClassActual" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="TitleColor" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Forms" Relationship="FriPriModel.FK_ProductsForms_Forms" FromRole="ProductsForms" ToRole="Forms" />
+    <NavigationProperty Name="Products" Relationship="FriPriModel.FK_ProductsForms_Products" FromRole="ProductsForms" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Profiles">
+    <Key>
+      <PropertyRef Name="IdProfile" />
+    </Key>
+    <Property Name="IdProfile" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProduct" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="PriceUSD" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="TagName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="AnonDefault" Type="Boolean" />
+    <Property Name="UserDefault" Type="Boolean" />
+    <Property Name="Paid" Type="Boolean" />
+    <Property Name="Featured" Type="Boolean" />
+    <Property Name="MotivatorText" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="ShortDescription" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Products" Relationship="FriPriModel.FK_Profiles_Products" FromRole="Profiles" ToRole="Products" />
+    <NavigationProperty Name="ProfilesDimensions" Relationship="FriPriModel.FK_ProfilesDimensions_Profiles" FromRole="Profiles" ToRole="ProfilesDimensions" />
+    <NavigationProperty Name="Subscriptions" Relationship="FriPriModel.FK_Subscriptions_Profiles" FromRole="Profiles" ToRole="Subscriptions" />
+  </EntityType>
+  <EntityType Name="ProfilesDimensions">
+    <Key>
+      <PropertyRef Name="IdProfileDimension" />
+    </Key>
+    <Property Name="IdProfileDimension" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProfile" Type="Int32" />
+    <Property Name="IdDimension" Type="Int32" />
+    <Property Name="Value" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SwitchValue" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Dimensions" Relationship="FriPriModel.FK_ProfilesDimensions_Dimensions" FromRole="ProfilesDimensions" ToRole="Dimensions" />
+    <NavigationProperty Name="Profiles" Relationship="FriPriModel.FK_ProfilesDimensions_Profiles" FromRole="ProfilesDimensions" ToRole="Profiles" />
+  </EntityType>
+  <EntityType Name="Publishers">
+    <Key>
+      <PropertyRef Name="IdPublisher" />
+    </Key>
+    <Property Name="IdPublisher" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="TagName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Products" Relationship="FriPriModel.FK_Products_Publishers" FromRole="Publishers" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Subscriptions">
+    <Key>
+      <PropertyRef Name="IdSubscription" />
+    </Key>
+    <Property Name="IdSubscription" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ExternalCode" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="RenewalDay" Type="Int32" />
+    <Property Name="LastRenewal" Type="DateTime" Precision="0" />
+    <Property Name="IdUser" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="IdProfile" Type="Int32" />
+    <Property Name="IsCurrent" Type="Boolean" />
+    <NavigationProperty Name="Profiles" Relationship="FriPriModel.FK_Subscriptions_Profiles" FromRole="Subscriptions" ToRole="Profiles" />
+    <NavigationProperty Name="Users" Relationship="FriPriModel.FK_Subscriptions_Users1" FromRole="Subscriptions" ToRole="Users" />
+    <NavigationProperty Name="UsersDimensions" Relationship="FriPriModel.FK_UsersDimensions_Subscriptions" FromRole="Subscriptions" ToRole="UsersDimensions" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdUser" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ExternalCode" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="IdProduct" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Products" Relationship="FriPriModel.FK_Users_Products" FromRole="Users" ToRole="Products" />
+    <NavigationProperty Name="Subscriptions" Relationship="FriPriModel.FK_Subscriptions_Users1" FromRole="Users" ToRole="Subscriptions" />
+  </EntityType>
+  <EntityType Name="UsersDimensions">
+    <Key>
+      <PropertyRef Name="IdUserDimension" />
+    </Key>
+    <Property Name="IdUserDimension" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="IdDimension" Type="Int32" />
+    <Property Name="CurrentValue" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DateLastUpdate" Type="DateTime" Precision="3" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="IdSubscription" Type="Int32" />
+    <Property Name="SwitchValue" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Dimensions" Relationship="FriPriModel.FK_UsersDimensions_Dimensions" FromRole="UsersDimensions" ToRole="Dimensions" />
+    <NavigationProperty Name="Subscriptions" Relationship="FriPriModel.FK_UsersDimensions_Subscriptions" FromRole="UsersDimensions" ToRole="Subscriptions" />
+  </EntityType>
+  <Association Name="FK_Dimensions_DimensionsCategories">
+    <End Role="DimensionsCategories" Type="FriPriModel.DimensionsCategories" Multiplicity="0..1" />
+    <End Role="Dimensions" Type="FriPriModel.Dimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DimensionsCategories">
+        <PropertyRef Name="IdDimensionCategory" />
+      </Principal>
+      <Dependent Role="Dimensions">
+        <PropertyRef Name="IdDimensionCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dimensions_DimensionsTypes">
+    <End Role="DimensionsTypes" Type="FriPriModel.DimensionsTypes" Multiplicity="0..1" />
+    <End Role="Dimensions" Type="FriPriModel.Dimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DimensionsTypes">
+        <PropertyRef Name="IdDimensionType" />
+      </Principal>
+      <Dependent Role="Dimensions">
+        <PropertyRef Name="IdDimensionType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfilesDimensions_Dimensions">
+    <End Role="Dimensions" Type="FriPriModel.Dimensions" Multiplicity="0..1" />
+    <End Role="ProfilesDimensions" Type="FriPriModel.ProfilesDimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dimensions">
+        <PropertyRef Name="IdDimension" />
+      </Principal>
+      <Dependent Role="ProfilesDimensions">
+        <PropertyRef Name="IdDimension" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersDimensions_Dimensions">
+    <End Role="Dimensions" Type="FriPriModel.Dimensions" Multiplicity="0..1" />
+    <End Role="UsersDimensions" Type="FriPriModel.UsersDimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dimensions">
+        <PropertyRef Name="IdDimension" />
+      </Principal>
+      <Dependent Role="UsersDimensions">
+        <PropertyRef Name="IdDimension" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DimensionsCategories_Products">
+    <End Role="Products" Type="FriPriModel.Products" Multiplicity="0..1" />
+    <End Role="DimensionsCategories" Type="FriPriModel.DimensionsCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="DimensionsCategories">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsForms_Forms">
+    <End Role="Forms" Type="FriPriModel.Forms" Multiplicity="0..1" />
+    <End Role="ProductsForms" Type="FriPriModel.ProductsForms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Forms">
+        <PropertyRef Name="IdForm" />
+      </Principal>
+      <Dependent Role="ProductsForms">
+        <PropertyRef Name="IdForm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Publishers">
+    <End Role="Publishers" Type="FriPriModel.Publishers" Multiplicity="0..1" />
+    <End Role="Products" Type="FriPriModel.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publishers">
+        <PropertyRef Name="IdPublisher" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="IdPublisher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsForms_Products">
+    <End Role="Products" Type="FriPriModel.Products" Multiplicity="0..1" />
+    <End Role="ProductsForms" Type="FriPriModel.ProductsForms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="ProductsForms">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Profiles_Products">
+    <End Role="Products" Type="FriPriModel.Products" Multiplicity="0..1" />
+    <End Role="Profiles" Type="FriPriModel.Profiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="Profiles">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Products">
+    <End Role="Products" Type="FriPriModel.Products" Multiplicity="0..1" />
+    <End Role="Users" Type="FriPriModel.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="IdProduct" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfilesDimensions_Profiles">
+    <End Role="Profiles" Type="FriPriModel.Profiles" Multiplicity="0..1" />
+    <End Role="ProfilesDimensions" Type="FriPriModel.ProfilesDimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profiles">
+        <PropertyRef Name="IdProfile" />
+      </Principal>
+      <Dependent Role="ProfilesDimensions">
+        <PropertyRef Name="IdProfile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subscriptions_Profiles">
+    <End Role="Profiles" Type="FriPriModel.Profiles" Multiplicity="0..1" />
+    <End Role="Subscriptions" Type="FriPriModel.Subscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profiles">
+        <PropertyRef Name="IdProfile" />
+      </Principal>
+      <Dependent Role="Subscriptions">
+        <PropertyRef Name="IdProfile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subscriptions_Users1">
+    <End Role="Users" Type="FriPriModel.Users" Multiplicity="0..1" />
+    <End Role="Subscriptions" Type="FriPriModel.Subscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="IdUser" />
+      </Principal>
+      <Dependent Role="Subscriptions">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersDimensions_Subscriptions">
+    <End Role="Subscriptions" Type="FriPriModel.Subscriptions" Multiplicity="0..1" />
+    <End Role="UsersDimensions" Type="FriPriModel.UsersDimensions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subscriptions">
+        <PropertyRef Name="IdSubscription" />
+      </Principal>
+      <Dependent Role="UsersDimensions">
+        <PropertyRef Name="IdSubscription" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
