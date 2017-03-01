@@ -35,12 +35,11 @@ namespace Api.Controllers
 
             return this.DimensionsService.GetNumericDimension(ProductToken, UserCode, DimensionTag);
         }
-
+        /*
         [HttpPut]
         [Route("{ProductToken}/{UserCode}/{DimensionTag}")]
         public bool Put(string ProductToken, string UserCode, string DimensionTag, [FromBody]decimal Quantity)
         {
-            /* VALIDACIONES */
 
             if (UserCode == "" || UserCode == String.Empty)
                 throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, "Parámetro \"UserCode\" no puede estar vacío"));
@@ -55,6 +54,6 @@ namespace Api.Controllers
                 throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, "Parametro \"Quantity\" no puede ser 0."));
 
             return this.DimensionsService.ConsumeNumericDimension(ProductToken, UserCode, DimensionTag, Quantity);
-        }
+        }*/
     }
 }

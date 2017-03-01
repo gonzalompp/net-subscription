@@ -73,6 +73,12 @@
       <End Role="UsersDimensions" EntitySet="UsersDimensions" />
     </AssociationSet>
     <EntitySet Name="Promos" EntityType="FriPriModel.Promos" />
+    <EntitySet Name="NaranyaNotification" EntityType="FriPriModel.NaranyaNotification" />
+    <EntitySet Name="Unsubscriptions" EntityType="FriPriModel.Unsubscriptions" />
+    <AssociationSet Name="FK__Unsubscri__IdSub__7B5B524B" Association="FriPriModel.FK__Unsubscri__IdSub__7B5B524B">
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+      <End Role="Unsubscriptions" EntitySet="Unsubscriptions" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Configuration">
     <Key>
@@ -102,6 +108,7 @@
     <NavigationProperty Name="DimensionsTypes" Relationship="FriPriModel.FK_Dimensions_DimensionsTypes" FromRole="Dimensions" ToRole="DimensionsTypes" />
     <NavigationProperty Name="ProfilesDimensions" Relationship="FriPriModel.FK_ProfilesDimensions_Dimensions" FromRole="Dimensions" ToRole="ProfilesDimensions" />
     <NavigationProperty Name="UsersDimensions" Relationship="FriPriModel.FK_UsersDimensions_Dimensions" FromRole="Dimensions" ToRole="UsersDimensions" />
+    <Property Name="IsInfiniteByDefault" Type="Boolean" />
   </EntityType>
   <EntityType Name="DimensionsCategories">
     <Key>
@@ -220,6 +227,7 @@
     <Property Name="Active" Type="Boolean" />
     <NavigationProperty Name="Dimensions" Relationship="FriPriModel.FK_ProfilesDimensions_Dimensions" FromRole="ProfilesDimensions" ToRole="Dimensions" />
     <NavigationProperty Name="Profiles" Relationship="FriPriModel.FK_ProfilesDimensions_Profiles" FromRole="ProfilesDimensions" ToRole="Profiles" />
+    <Property Name="IsInfinite" Type="Boolean" />
   </EntityType>
   <EntityType Name="Publishers">
     <Key>
@@ -252,6 +260,7 @@
     <Property Type="DateTime" Name="PromoEnd" Precision="3" />
     <Property Type="Boolean" Name="PromoActive" />
     <Property Type="Int32" Name="IdPromo" />
+    <NavigationProperty Name="Unsubscriptions" Relationship="FriPriModel.FK__Unsubscri__IdSub__7B5B524B" FromRole="Subscriptions" ToRole="Unsubscriptions" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -268,7 +277,7 @@
       <PropertyRef Name="IdUser" />
     </Key>
     <Property Name="IdUser" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="ExternalCode" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="ExternalCode" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
     <Property Name="IdProduct" Type="Int32" />
     <Property Name="Email" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
     <Property Name="Active" Type="Boolean" />
@@ -470,4 +479,47 @@
     <Property Type="Int32" Name="IdProfileInactivePromo" />
     <Property Type="Int32" Name="IdProduct" />
   </EntityType>
+  <EntityType Name="NaranyaNotification">
+    <Key>
+      <PropertyRef Name="idNaranyaNotification" />
+    </Key>
+    <Property Name="idNaranyaNotification" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_event" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ipn_url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ipn_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="verify_sign" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="id_app" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="id_customer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="id_transaction" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="amount" Type="Int32" />
+    <Property Name="currency" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="id_subscription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="id_service" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="Int32" />
+    <Property Name="updated" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Unsubscriptions">
+    <Key>
+      <PropertyRef Name="IdUnsubscription" />
+    </Key>
+    <Property Name="IdUnsubscription" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdSubscription" Type="Int32" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="DateUnsubscribed" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Subscriptions" Relationship="FriPriModel.FK__Unsubscri__IdSub__7B5B524B" FromRole="Unsubscriptions" ToRole="Subscriptions" />
+  </EntityType>
+  <Association Name="FK__Unsubscri__IdSub__7B5B524B">
+    <End Type="FriPriModel.Subscriptions" Role="Subscriptions" Multiplicity="0..1" />
+    <End Type="FriPriModel.Unsubscriptions" Role="Unsubscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subscriptions">
+        <PropertyRef Name="IdSubscription" />
+      </Principal>
+      <Dependent Role="Unsubscriptions">
+        <PropertyRef Name="IdSubscription" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

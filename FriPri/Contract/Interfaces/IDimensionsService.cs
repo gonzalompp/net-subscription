@@ -33,15 +33,23 @@ namespace Contract.Interfaces
         /// <returns></returns>
         decimal GetNumericDimension(string ProductToken, string UserCode, string DimensionTag);
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ProductToken"></param>
+        /// <param name="UserCode"></param>
+        /// <param name="DimensionTag"></param>
+        /// <returns></returns>
+        decimal GetNumericConsumableDimension(string ProductToken, string UserCode, string DimensionTag);
 
         /// <summary>
         /// Consumes the indicated quantity of the indicated dimension of the user wallet for this product
         /// </summary>
         /// <param name="BaseParam"></param>
         /// <param name="DimensionTag"></param>
-        /// <param name="quantity"></param>
+        /// <param name="Amount"></param>
         /// <returns></returns>
-        bool ConsumeNumericDimension(string ProductToken, string UserCode, string DimensionTag, decimal quantity);
+        decimal ConsumeNumericDimension(string ProductToken, string UserCode, string DimensionTag, decimal Amount);
+        decimal ConsumeNumericConsumableDimension(string productToken, string userCode, string dimensionTag, decimal amount);
     }
 }

@@ -178,7 +178,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ExampleController.cs" />
     <Compile Include="Controllers\IntegrationConfigController.cs" />
+    <Compile Include="Controllers\NaranyaController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\NumericConsumableDimensionsController.cs" />
     <Compile Include="Controllers\NumericDimensionsController.cs" />
     <Compile Include="Controllers\SwitchDimensionsController.cs" />
     <Compile Include="Controllers\SubscriptionsController.cs" />

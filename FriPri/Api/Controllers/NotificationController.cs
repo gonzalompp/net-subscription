@@ -85,11 +85,20 @@ namespace Api.Controllers
         [Route("billing")]
         public bool BillingNotify([FromBody]NotifyData data)
         {
+            (new Repository.Implementation.EventLogRepository()).SetLog("Usuario se suscribe APP[" + data.idApp + "] USER[" + data.idUserExternal + "] PLAN[" + data.idPlan + "]", "Confirmacion de suscripcion");
+
             return subscriptionsService.SetSubscription(data.idUserExternal, int.Parse(data.idPlan), data.idApp);
         }
-        
 
-        
+
+        [HttpPost]
+        [Route("cancel")]
+        public bool CanelNotify([FromBody]NotifyData data)
+        {
+            //return subscriptionsService.SetSubscription(data.idUserExternal, int.Parse(data.idPlan), data.idApp);
+            (new Repository.Implementation.EventLogRepository()).SetLog("Usuario cancela suscripcion APP[" + data.idApp + "] USER[" + data.idUserExternal + "] PLAN[" + data.idPlan + "]","Cancelacion de suscripcion");
+            return true;
+        }
 
 
         [HttpPost]

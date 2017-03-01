@@ -48,17 +48,26 @@
     <Compile Include="Exceptions\ProfilesExceptions.cs" />
     <Compile Include="Exceptions\PromosExceptions.cs" />
     <Compile Include="Exceptions\SubscriptionsExceptions.cs" />
+    <Compile Include="Exceptions\UsersDimensionsExceptions.cs" />
     <Compile Include="Exceptions\UsersExceptions.cs" />
     <Compile Include="Interfaces\IDimensionsService.cs" />
     <Compile Include="Interfaces\ISubscriptionsService.cs" />
     <Compile Include="Interfaces\IStatusService.cs" />
+    <Compile Include="Models\ActiveSubscriptionsData.cs" />
+    <Compile Include="Models\ActiveSubscriptionsParam.cs" />
     <Compile Include="Models\BaseParam.cs" />
     <Compile Include="Models\DimensionsParams.cs" />
+    <Compile Include="Models\GetSubscriptionsByRenewalParams.cs" />
     <Compile Include="Models\GoogleAnalyticsHelper.cs" />
     <Compile Include="Models\IntegrationValues.cs" />
+    <Compile Include="Models\NaranyaNotification.cs" />
     <Compile Include="Models\Profiles.cs" />
+    <Compile Include="Models\ResetSubscriptionParam.cs" />
+    <Compile Include="Models\RestResponse.cs" />
     <Compile Include="Models\Subscriptions.cs" />
+    <Compile Include="Models\SubscriptionsResponse.cs" />
     <Compile Include="Models\Users.cs" />
+    <Compile Include="Models\UsersDimensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

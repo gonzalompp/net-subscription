@@ -14,6 +14,7 @@
     <EntitySetMapping Name="Dimensions">
       <EntityTypeMapping TypeName="FriPriModel.Dimensions">
         <MappingFragment StoreEntitySet="Dimensions">
+          <ScalarProperty Name="IsInfiniteByDefault" ColumnName="IsInfiniteByDefault" />
           <ScalarProperty Name="IdDimension" ColumnName="IdDimension" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="IdDimensionType" ColumnName="IdDimensionType" />
@@ -129,6 +130,7 @@
     <EntitySetMapping Name="ProfilesDimensions">
       <EntityTypeMapping TypeName="FriPriModel.ProfilesDimensions">
         <MappingFragment StoreEntitySet="ProfilesDimensions">
+          <ScalarProperty Name="IsInfinite" ColumnName="IsInfinite" />
           <ScalarProperty Name="IdProfileDimension" ColumnName="IdProfileDimension" />
           <ScalarProperty Name="IdProfile" ColumnName="IdProfile" />
           <ScalarProperty Name="IdDimension" ColumnName="IdDimension" />
@@ -214,6 +216,38 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="TagPromo" ColumnName="TagPromo" />
           <ScalarProperty Name="IdPromo" ColumnName="IdPromo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NaranyaNotification">
+      <EntityTypeMapping TypeName="FriPriModel.NaranyaNotification">
+        <MappingFragment StoreEntitySet="NaranyaNotification">
+          <ScalarProperty Name="updated" ColumnName="updated" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="id_service" ColumnName="id_service" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="id_subscription" ColumnName="id_subscription" />
+          <ScalarProperty Name="currency" ColumnName="currency" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="id_transaction" ColumnName="id_transaction" />
+          <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+          <ScalarProperty Name="id_app" ColumnName="id_app" />
+          <ScalarProperty Name="verify_sign" ColumnName="verify_sign" />
+          <ScalarProperty Name="ipn_type" ColumnName="ipn_type" />
+          <ScalarProperty Name="ipn_url" ColumnName="ipn_url" />
+          <ScalarProperty Name="id_event" ColumnName="id_event" />
+          <ScalarProperty Name="idNaranyaNotification" ColumnName="idNaranyaNotification" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Unsubscriptions">
+      <EntityTypeMapping TypeName="FriPriModel.Unsubscriptions">
+        <MappingFragment StoreEntitySet="Unsubscriptions">
+          <ScalarProperty Name="DateUnsubscribed" ColumnName="DateUnsubscribed" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="IdSubscription" ColumnName="IdSubscription" />
+          <ScalarProperty Name="IdUnsubscription" ColumnName="IdUnsubscription" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

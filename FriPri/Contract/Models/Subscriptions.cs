@@ -10,7 +10,7 @@ namespace Contract.Models
     {
 
         //datos de la suscripcion
-        //public int IdSubscription { get; set; }
+        public int IdSubscription { get; set; }
 
         public string ExternalCode { get; set; }
 
@@ -39,5 +39,7 @@ namespace Contract.Models
         public bool? PromoActive { get; set; }
 
         public int? IdPromo { get; set; }
+
+        public List<UsersDimensions> Dimensions { get; set; }
     }
 }

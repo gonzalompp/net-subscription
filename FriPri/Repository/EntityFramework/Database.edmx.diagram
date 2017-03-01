@@ -35,6 +35,9 @@
         <AssociationConnector Association="FriPriModel.FK_Subscriptions_Users1" ManuallyRouted="false" />
         <AssociationConnector Association="FriPriModel.FK_UsersDimensions_Subscriptions" ManuallyRouted="false" />
         <EntityTypeShape EntityType="FriPriModel.Promos" Width="1.5" PointX="3.6097693255216674" PointY="5.4162694837042453" />
+        <EntityTypeShape EntityType="FriPriModel.NaranyaNotification" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="FriPriModel.Unsubscriptions" Width="1.5" PointX="9.75" PointY="18.5" />
+        <AssociationConnector Association="FriPriModel.FK__Unsubscri__IdSub__7B5B524B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

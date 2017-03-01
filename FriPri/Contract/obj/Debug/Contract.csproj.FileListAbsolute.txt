@@ -6,3 +6,17 @@ C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Contract\bin\Debug
 C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Contract\bin\Debug\Contract.pdb
 C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Contract\obj\Debug\Contract.dll
 C:\Users\Gonzalo\Documents\Visual Studio 2015\Projects\FriPri\Contract\obj\Debug\Contract.pdb
+C:\Users\gpere\OneDrive\Documentos\Visual Studio 2015\Projects\FriPri\Contract\bin\Debug\Contract.dll
+C:\Users\gpere\OneDrive\Documentos\Visual Studio 2015\Projects\FriPri\Contract\bin\Debug\Contract.pdb
+C:\Users\gpere\OneDrive\Documentos\Visual Studio 2015\Projects\FriPri\Contract\obj\Debug\Contract.dll
+C:\Users\gpere\OneDrive\Documentos\Visual Studio 2015\Projects\FriPri\Contract\obj\Debug\Contract.pdb
+C:\Users\gpere\OneDrive\Documentos\Visual Studio 2015\Projects\FriPri\Contract\obj\Debug\Contract.csprojResolveAssemblyReference.cache
+C:\Users\gpere\OneDrive\Documentos\Visual Studio 2015\Projects\FriPri_v2\Contract\bin\Debug\Contract.dll
+C:\Users\gpere\OneDrive\Documentos\Visual Studio 2015\Projects\FriPri_v2\Contract\bin\Debug\Contract.pdb
+C:\Users\gpere\OneDrive\Documentos\Visual Studio 2015\Projects\FriPri_v2\Contract\obj\Debug\Contract.csprojResolveAssemblyReference.cache
+C:\Users\gpere\OneDrive\Documentos\Visual Studio 2015\Projects\FriPri_v2\Contract\obj\Debug\Contract.dll
+C:\Users\gpere\OneDrive\Documentos\Visual Studio 2015\Projects\FriPri_v2\Contract\obj\Debug\Contract.pdb
+C:\GIT\freemium\Visual Studio Solution\Contract\bin\Debug\Contract.dll
+C:\GIT\freemium\Visual Studio Solution\Contract\bin\Debug\Contract.pdb
+C:\GIT\freemium\Visual Studio Solution\Contract\obj\Debug\Contract.dll
+C:\GIT\freemium\Visual Studio Solution\Contract\obj\Debug\Contract.pdb

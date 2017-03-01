@@ -19,6 +19,9 @@ namespace Business.Implementation
         private SubscriptionsRepository subscriptionsRepository { get; set; }
         private ProfilesRepository profilesRepository { get; set; }
         private PromosRepository promosRepository { get; set; }
+        private DimensionsRepository dimensionsRepository { get; set; }
+        private UsersDimensionsRepository usersDimensionsRepository { get; set; }
+
 
         public void Dispose()
         {
@@ -32,6 +35,8 @@ namespace Business.Implementation
             this.subscriptionsRepository = new SubscriptionsRepository();
             this.profilesRepository = new ProfilesRepository();
             this.promosRepository = new PromosRepository();
+            this.dimensionsRepository = new DimensionsRepository();
+            this.usersDimensionsRepository = new UsersDimensionsRepository();
         }
 
         public Subscriptions Get(string ProductToken, string UserCode)
@@ -82,11 +87,23 @@ namespace Business.Implementation
                         throw new Contract.Exceptions.StandardProfileNotFoundException("El producto no tiene un perfil estándar para cuando el usuario está registrado pero no está suscrito a ningún perfil. Usuario: " + UserCode , null);
                 }
             }
+
+            List<UsersDimensions> dimensiones = new List<UsersDimensions>();
+
+            foreach (var item in subscription.UsersDimensions)
+            {
+                dimensiones.Add(new UsersDimensions() {
+                    IdDimension = (int)item.IdDimension,
+                    Dimension = item.Dimensions.Description,
+                    CurrentValue = (decimal)item.CurrentValue,
+                    TagName = item.Dimensions.TagName
+                });
+            }
             
             //genera objeto de salida
             return new Subscriptions
             {
-                //IdSubscription  = subscription.IdSubscription, //no debe ir dentro de lo que se expone como servicio. es de uso interno
+                IdSubscription  = subscription.IdSubscription,
                 ExternalCode = subscription.ExternalCode,
                 DateCreated = subscription.DateCreated,
                 RenewalDay = subscription.RenewalDay,
@@ -103,6 +120,7 @@ namespace Business.Implementation
 
                 Profiles = new Profiles
                 {
+                    ProfileId = profile.IdProfile,
                     Active = profile.Active,
                     Description = profile.Description,
                     Name = profile.Name,
@@ -118,11 +136,14 @@ namespace Business.Implementation
 
                 PromoActive = subscription.PromoActive,
 
-                IdPromo = subscription.IdPromo
+                IdPromo = subscription.IdPromo,
+
+                Dimensions = dimensiones
             };
 
         }
 
+        //this is used for billing controller
         public bool SetSubscription(string UserCode, int IdPlan, string AppToken)
         {
             //verificar existencia de la app token
@@ -151,7 +172,8 @@ namespace Business.Implementation
                     IdProfile = IdPlan,
                     IdUser = user.IdUser,
                     IsCurrent = true,
-                    RenewalDay = DateTime.Now.Day
+                    RenewalDay = DateTime.Now.Day,
+                    LastRenewal = DateTime.Now
                 });
             }
             else {
@@ -309,6 +331,115 @@ namespace Business.Implementation
             }
 
             return true;
+        }
+
+        public List<ActiveSubscriptionsData> GetActiveSubscriptions(string ProductToken)
+        {
+            return subscriptionsRepository.GetActiveSubscriptions(ProductToken);
+        }
+
+        public bool ResetSubscription(string AppToken, string UserCode)
+        {
+            //llama con categoria vacia
+            return ResetSubscriptionByCategory(AppToken, UserCode, null);
+        }
+
+        public bool ResetSubscriptionByCategory(string AppToken, string UserCode, string Category)
+        {
+            //verificar existencia de la app token
+            //obtiene ID de producto
+            int idProduct = productsRepository.GetProductId(AppToken);
+            if (idProduct == 0)
+                throw new Contract.Exceptions.ProductsNotFoundException("No se encontró un producto con el ProductToken " + AppToken, null);
+
+            //obtener usuario segun el app token y external code
+            var user = usersRepository.GetUser(UserCode, idProduct);
+            if (user == null)
+                throw new Contract.Exceptions.UserNotFoundException("No se encontró un usuario con el UserCode " + UserCode, null);
+
+
+            //obtiene la suscripcion
+            var sub = subscriptionsRepository.GetUserCurrentSubscription(user.IdUser);
+
+            if (sub == null)
+            {
+                (new Repository.Implementation.EventLogRepository()).SetLog("El usuario "+ UserCode + " del producto "+ AppToken + " no tiene suscripcion", "Sin suscripcion");
+                return false;
+            }
+
+            //verifica si tiene perfil
+            if (sub.IdProfile == null || sub.IdProfile == 0)
+            {
+                (new Repository.Implementation.EventLogRepository()).SetLog("El usuario " + UserCode + " del producto " + AppToken + " no tiene tiene configurado un perfil a su suscripcion", "Sin suscripcion");
+                return false;
+            }
+
+            /////////////
+            // todo ok //
+            /////////////
+
+            //obtengo el perfil
+            var profile = profilesRepository.GetProfile((int)sub.IdProfile);
+
+            if (profile == null)
+            {
+                (new Repository.Implementation.EventLogRepository()).SetLog("PERFIL ["+ (int)sub.IdProfile + "] NO EXISTE", "Perfil no existente");
+                return true;
+            }
+
+            //hasta este punto el perfil existe. Se obtienen las dimensiones del perfil
+            var dimensiones = dimensionsRepository.GetProfileDimensionsByCategory(profile.IdProfile, Category);
+
+            foreach (var item in dimensiones)
+            {
+                //chequea si es de tipo consumible
+                if (item.IdDimensionType == 3)
+                {
+                    //si es consumible, verifica que tenga su configuracion para el usuario, si no, la crea
+                    var userdimension = item.UsersDimensions.FirstOrDefault(e=>e.IdDimension == item.IdDimension && e.IdSubscription == sub.IdSubscription);
+
+                    if (userdimension == null)
+                    {
+                        //crea user dimension
+                        usersDimensionsRepository.NewUserDimension(item.IdDimension, sub.IdSubscription);
+                    }
+                    else
+                    {
+                        usersDimensionsRepository.RestoreUserDimension(userdimension.IdUserDimension);
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public List<SubscriptionsResponse> GetSubscriptionsByRenewal(DateTime CurrentDate, int top)
+        {
+            var Subscriptions = subscriptionsRepository.GetSubscriptionsByRenewal(CurrentDate, top);
+
+            List<SubscriptionsResponse> response = new List<SubscriptionsResponse>();
+
+            foreach (var item in Subscriptions)
+            {
+                response.Add(new SubscriptionsResponse {
+                    IdSubscription = item.IdSubscription,
+                    ExternalCode = item.ExternalCode,
+                    DateCreated = item.DateCreated,
+                    RenewalDay = item.RenewalDay,
+                    LastRenewal = item.LastRenewal,
+                    IdUser = item.IdUser,
+                    Active = item.Active,
+                    IdProfile = item.IdProfile,
+                    IsCurrent = item.IsCurrent,
+                    PromoFreeDays = item.PromoFreeDays,
+                    PromoStarted = item.PromoStarted,
+                    PromoEnd = item.PromoEnd,
+                    PromoActive = item.PromoActive,
+                    IdPromo = item.IdPromo
+                });
+            }
+
+            return response;
         }
     }
 }

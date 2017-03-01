@@ -20,5 +20,27 @@ namespace Repository.Implementation
         {
             return db.Dimensions.FirstOrDefault(e => e.IdDimension == idDimension);
         }
+
+        public List<Dimensions> GetProfileDimensions(int IdProfile)
+        {
+            if (IdProfile == 0)
+                return null;
+
+            return db.Dimensions.Where(e=>e.ProfilesDimensions.Any(j=>j.IdProfile == IdProfile)).ToList();
+        }
+
+        public List<Dimensions> GetProfileDimensionsByCategory(int IdProfile, string Category)
+        {
+            if (IdProfile == 0)
+                return null;
+
+            var dims = db.Dimensions.Where(e => e.ProfilesDimensions.Any(j => j.IdProfile == IdProfile));
+
+            //filtra por categoria si es que la trae
+            if (Category != null)
+                dims = dims.Where(e=>e.DimensionsCategories.TagName == Category);
+
+            return dims.ToList();
+        }
     }
 }

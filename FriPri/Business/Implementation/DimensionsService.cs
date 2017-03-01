@@ -15,6 +15,8 @@ namespace Business.Implementation
         private ProfilesDimensionsRepository profilesDimensionsRepository { get; set; }
         private DimensionsRepository dimensionsRepository { get; set; }
         private ProfilesRepository profilesRepository { get; set; }
+        private UsersDimensionsRepository usersDimensionsRepository { get; set; }
+        private SubscriptionsRepository subscriptionsRepository { get; set; }
 
         public DimensionsService()
         {
@@ -23,11 +25,8 @@ namespace Business.Implementation
             this.profilesDimensionsRepository = new ProfilesDimensionsRepository();
             this.dimensionsRepository = new DimensionsRepository();
             this.profilesRepository = new ProfilesRepository();
-        }
-
-        public bool ConsumeNumericDimension(string ProductToken, string UserCode, string DimensionTag, decimal quantity)
-        {
-            throw new NotImplementedException();
+            this.usersDimensionsRepository = new UsersDimensionsRepository();
+            this.subscriptionsRepository = new SubscriptionsRepository();
         }
 
         public decimal GetNumericDimension(string ProductToken, string UserCode, string DimensionTag)
@@ -84,7 +83,7 @@ namespace Business.Implementation
 
             if (!profiledimension.Dimensions.DimensionsTypes.TagName.Equals("Numeric"))
             {
-                throw new Contract.Exceptions.DimensionTypeIsNotSwitchException("La dimension " + DimensionTag + " NO es de tipo Switch, es de tipo " + profiledimension.Dimensions.TagName, null);
+                throw new Contract.Exceptions.DimensionTypeIsNotSwitchException("La dimension " + DimensionTag + " NO es de tipo Numérica, es de tipo " + profiledimension.Dimensions.DimensionsTypes.TagName, null);
             }
 
             //retorno
@@ -227,6 +226,138 @@ namespace Business.Implementation
         public void Dispose()
         {
             throw new NotImplementedException();
+        }
+
+        public decimal GetNumericConsumableDimension(string ProductToken, string UserCode, string DimensionTag)
+        {
+            //obtiene ID de producto
+            int idProduct = productsRepository.GetProductId(ProductToken);
+            if (idProduct == 0)
+                throw new Contract.Exceptions.ProductsNotFoundException("No se encontró un producto con el ProductToken " + ProductToken, null);
+
+            //validar existencia de dimension buscada
+            Repository.EntityFramework.Dimensions dimension = dimensionsRepository.GetDimension(idProduct, DimensionTag);
+            if (dimension == null)
+            {
+                throw new Contract.Exceptions.ProductDimensionNotFoundException("La dimensión " + DimensionTag + "(" + dimension.IdDimension + ") no existe para este producto", null);
+            }
+
+            //obtiene datos del usuario
+            var user = usersRepository.GetUser(UserCode, idProduct);
+            if (user == null)
+            {
+                throw new Contract.Exceptions.UserNotFoundException("No se encontró un usuario con el UserCode " + UserCode, null);
+            }
+
+            if (user.Active == false)
+            {
+                throw new Contract.Exceptions.UserInactiveException("El usuario indicado no se encuentra Activo en la plataforma", null);
+            }
+
+            //obtengo la suscripcion
+            //obtiene la suscripcion
+            var sub = subscriptionsRepository.GetUserCurrentSubscription(user.IdUser);
+
+            if (sub == null)
+            {
+                (new Repository.Implementation.EventLogRepository()).SetLog("El usuario " + UserCode + " del producto " + ProductToken + " no tiene suscripcion", "Sin suscripcion");
+                throw new Contract.Exceptions.SubscriptionNotFoundException("No se encontró una subscripcion para el UserCode " + UserCode, null);
+            }
+
+            if (sub.IdProfile == 0)
+            {
+                (new Repository.Implementation.EventLogRepository()).SetLog("El usuario " + UserCode + " del producto " + ProductToken + " no tiene perfil en su suscripcion", "Sin perfil en susc.");
+                throw new Contract.Exceptions.ProfileNotFoundException("No se encontró un perfil configurado para la suscripcion del usuario", null);
+            }
+
+
+            //obtengo el userdimension
+            var userdimension = usersDimensionsRepository.GetUserDimension(dimension.IdDimension, sub.IdSubscription);
+
+            if (userdimension == null)
+                throw new Contract.Exceptions.UserDimensionNotFoundException("Usuario no tiene configurada la dimension", null);
+
+            //TODO OK
+
+            return (decimal)userdimension.CurrentValue;
+
+        }
+
+        decimal IDimensionsService.ConsumeNumericDimension(string ProductToken, string UserCode, string DimensionTag, decimal amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal ConsumeNumericConsumableDimension(string ProductToken, string UserCode, string DimensionTag, decimal Amount)
+        {
+            //obtiene ID de producto
+            int idProduct = productsRepository.GetProductId(ProductToken);
+            if (idProduct == 0)
+                throw new Contract.Exceptions.ProductsNotFoundException("No se encontró un producto con el ProductToken " + ProductToken, null);
+
+            //validar existencia de dimension buscada
+            Repository.EntityFramework.Dimensions dimension = dimensionsRepository.GetDimension(idProduct, DimensionTag);
+            if (dimension == null)
+            {
+                throw new Contract.Exceptions.ProductDimensionNotFoundException("La dimensión " + DimensionTag + "(" + dimension.IdDimension + ") no existe para este producto", null);
+            }
+
+            //obtiene datos del usuario
+            var user = usersRepository.GetUser(UserCode, idProduct);
+            if (user == null)
+            {
+                throw new Contract.Exceptions.UserNotFoundException("No se encontró un usuario con el UserCode " + UserCode, null);
+            }
+
+            if (user.Active == false)
+            {
+                throw new Contract.Exceptions.UserInactiveException("El usuario indicado no se encuentra Activo en la plataforma", null);
+            }
+
+            //obtengo la suscripcion
+            //obtiene la suscripcion
+            var sub = subscriptionsRepository.GetUserCurrentSubscription(user.IdUser);
+
+            if (sub == null)
+            {
+                (new Repository.Implementation.EventLogRepository()).SetLog("El usuario " + UserCode + " del producto " + ProductToken + " no tiene suscripcion", "Sin suscripcion");
+                throw new Contract.Exceptions.SubscriptionNotFoundException("No se encontró una subscripcion para el UserCode " + UserCode, null);
+            }
+
+            if (sub.IdProfile == 0)
+            {
+                (new Repository.Implementation.EventLogRepository()).SetLog("El usuario " + UserCode + " del producto " + ProductToken + " no tiene perfil en su suscripcion", "Sin perfil en susc.");
+                throw new Contract.Exceptions.ProfileNotFoundException("No se encontró un perfil configurado para la suscripcion del usuario", null);
+            }
+
+            //obtengo el profile dimension
+            var profiledimension = this.profilesDimensionsRepository.GetProfileDimension(user.IdUser, dimension.IdDimension);
+            if (profiledimension == null)
+            {
+                throw new Contract.Exceptions.ProfileDimensionNotConfiguredException("La dimension no fue configurada con el perfil", null);
+            }
+
+
+            if (profiledimension.IsInfinite == true)
+            {
+                //si la dimension es infinita, solo devuelve el valor que le pasaron como parametro
+                //var userdimension = usersDimensionsRepository.GetUserDimension(dimension.IdDimension, sub.IdSubscription);
+
+                //return (decimal)userdimension.CurrentValue;
+                return Amount;
+            }
+            else
+            {
+                //si la dimension NO ES FININITA consume y devuelve valor
+                /*
+                var userdimension = usersDimensionsRepository.ConsumeAndGetUserDimension(dimension.IdDimension, sub.IdSubscription, Amount);
+
+                if (userdimension == null)
+                    throw new Contract.Exceptions.UserDimensionNotFoundException("Usuario no tiene configurada la dimension", null);
+                    */
+
+                return usersDimensionsRepository.ConsumeAndGetConsumedUserDimensionValue(dimension.IdDimension, sub.IdSubscription, Amount);
+            }
         }
     }
 }

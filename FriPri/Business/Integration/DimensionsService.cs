@@ -10,6 +10,10 @@ namespace Business.Integration
 {
     public class DimensionsService : IDimensionsService
     {
+        public decimal ConsumeNumericConsumableDimension(string productToken, string userCode, string dimensionTag, decimal amount)
+        {
+            throw new NotImplementedException();
+        }
 
         /*
             Contract.Models.IntegrationValues.NumericValue = NumericValue;
@@ -33,6 +37,11 @@ namespace Business.Integration
             throw new NotImplementedException();
         }
 
+        public decimal GetNumericConsumableDimension(string ProductToken, string UserCode, string DimensionTag)
+        {
+            throw new NotImplementedException();
+        }
+
         public decimal GetNumericDimension(string ProductToken, string UserCode, string DimensionTag)
         {
             return Contract.Models.IntegrationValues.NumericValue;
@@ -41,6 +50,11 @@ namespace Business.Integration
         public bool GetSwitchDimension(string ProductToken, string UserCode, string DimensionTag)
         {
             return Contract.Models.IntegrationValues.SwitchValue;
+        }
+
+        decimal IDimensionsService.ConsumeNumericDimension(string ProductToken, string UserCode, string DimensionTag, decimal amount)
+        {
+            throw new NotImplementedException();
         }
     }
 }

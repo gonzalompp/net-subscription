@@ -17,5 +17,11 @@ namespace Contract.Interfaces
         bool SetSubscription(string UserCode, int IdPlan, string AppToken, int addDays);
 
         bool SetSubscriptionWithPromo(string UserCode, int IdPlan, string AppToken, string TagPromo);
+        List<ActiveSubscriptionsData> GetActiveSubscriptions(string ProductToken);
+        bool ResetSubscription(string AppToken, string UserCode);
+
+        bool ResetSubscriptionByCategory(string AppToken, string UserCode, string Category);
+
+        List<SubscriptionsResponse> GetSubscriptionsByRenewal(DateTime CurrentDate, int top);
     }
 }

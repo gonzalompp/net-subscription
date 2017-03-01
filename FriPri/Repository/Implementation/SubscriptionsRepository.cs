@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contract.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -133,6 +134,53 @@ namespace Repository.Implementation
             db.SaveChanges();
 
             return sus;
+        }
+
+        public List<EntityFramework.Subscriptions> GetSubscriptionsByRenewal(DateTime CurrentDate, int top)
+        {
+            //DateTime Today = DateTime.Now;
+            int DaysInMonth = DateTime.DaysInMonth(CurrentDate.Year,CurrentDate.Month);
+
+            //el primer dia del mes de la fecha actual
+            DateTime fecha_limite_lastrenewal = CurrentDate.AddDays((CurrentDate.Day - 1) * (-1));
+
+            //obtiene las subscripciones que no hayan sido renovadas este mes (Busca renovaciones de meses anteriores)
+            var Subscriptions = db.Subscriptions.Where(e=> e.LastRenewal < fecha_limite_lastrenewal);
+
+            //si el mes termina en este dia, que obtenga las suscripciones que sean de dia mayor (Todas las restantes del mes)
+            if (CurrentDate.Day == DaysInMonth)
+                Subscriptions = Subscriptions.Where(e => e.RenewalDay >= CurrentDate.Day);
+            else
+                Subscriptions = Subscriptions.Where(e => e.RenewalDay == CurrentDate.Day);
+
+            //cantidad maxima
+            if (top > 0)
+                Subscriptions = Subscriptions.Take(top);
+
+            return Subscriptions.ToList();
+
+        }
+
+        public List<ActiveSubscriptionsData> GetActiveSubscriptions(string ProductToken)
+        {
+            List<ActiveSubscriptionsData> list = new List<ActiveSubscriptionsData>();
+
+            var subs = db.Subscriptions.Where(e=>e.Users.Products.Token == ProductToken && !e.Unsubscriptions.Any()).OrderBy(e=>e.DateCreated);
+
+            foreach (var item in subs)
+            {
+                list.Add(new ActiveSubscriptionsData
+                {
+                    ProfileId = (int)item.IdProfile,
+                    ProfileName = item.Profiles.Name,
+                    ProfilePaid = (item.Profiles != null && item.Profiles.Paid != null) ? (bool)item.Profiles.Paid : false,
+                    SubscriptionDateCreated = item.DateCreated,
+                    UserExternalCode = item.Users.ExternalCode.Trim(),
+                    SubscriptionDateLastRenewal = item.LastRenewal
+                });
+            }
+
+            return list;
         }
 
 
